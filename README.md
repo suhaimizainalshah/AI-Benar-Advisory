@@ -3,7 +3,7 @@
 A fast, accessible, cookieless one-page site for an AI compliance consultancy. Plain HTML, CSS and JavaScript: no build step, no framework, no external fonts.
 
 ## Before you publish
-1. **Booking link:** in `index.html`, replace `https://calendly.com/` (id `book`) with your own booking page.
+1. **Booking link:** the free call uses `https://calendly.com/suhaimizainalshah/20-minute-meeting` (the button with id `book` in `index.html`). The paid 30-minute walkthrough link (`/30min`) is deliberately not on the site: send it to clients only after they pay.
 2. **Domain:** replace `https://compliscope.example/` in the `canonical` tag with your real address.
 3. **Counter name:** in `app.js`, change `ANALYTICS.namespace` to a name only you use.
 4. **Public visitor count:** it stays hidden until visits reach `ANALYTICS.showVisitsFrom` (1,000). Change or set `on: false` to switch counting off.
@@ -12,6 +12,12 @@ A fast, accessible, cookieless one-page site for an AI compliance consultancy. P
 
 ## Publish on GitHub Pages
 Upload these files to a repository, then Settings → Pages → Deploy from branch → `main` / root. Add a custom domain in the same screen.
+
+## Motion
+- **Opening section:** a faint field of 0s and 1s settles within about a second, then stops.
+- **"Book a call" band:** when it scrolls into view, the digits settle into a brass section sign (§), once.
+- **The rules check:** results appear one after another when someone presses "Show my rules".
+Everything is still for visitors who ask their device to reduce motion. The animation is plain canvas code in `app.js` (section 5), with no libraries.
 
 ## See your numbers
 Add `#stats` to your site address. You’ll see visits, checks completed and clicks on each call to action. Counts are anonymous totals; browsers sending Do Not Track or Global Privacy Control are never counted.

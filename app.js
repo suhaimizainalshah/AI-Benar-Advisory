@@ -57,7 +57,7 @@
     result.innerHTML = `
       <h3>${strict ? `${strict} binding rule${strict > 1 ? "s" : ""} probably apply to you` : "Mostly good practice for now"}</h3>
       <p class="next">${hits.length > 4 ? "That’s a lot to track at once. A readiness assessment puts them in order." : "A website check is a quick way to see where you stand."}</p>
-      <ul class="rules">${hits.map(h => `<li><span class="tag${h.soon ? " soon" : ""}${h.voluntary ? " voluntary" : ""}">${h.tag}</span><b>${val(h.title)}</b><small>${val(h.note)}</small></li>`).join("")}</ul>
+      <ul class="rules">${hits.map((h, i) => `<li style="--i:${i}"><span class="tag${h.soon ? " soon" : ""}${h.voluntary ? " voluntary" : ""}">${h.tag}</span><b>${val(h.title)}</b><small>${val(h.note)}</small></li>`).join("")}</ul>
       <a class="btn block" href="#contact" data-track="check_contact">Talk through my results</a>
       <p class="fine" style="margin-top:.7rem">A first indication based on your answers, not legal advice.</p>`;
     result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
@@ -92,4 +92,54 @@
   document.addEventListener("keydown", e => { if (e.key === "Escape" && !$("#stats").hidden) closeStats(); });
   addEventListener("hashchange", () => location.hash === "#stats" && showStats());
   if (location.hash === "#stats") showStats();
+
+  /* ---------- 5. binary field ----------
+     Hero: a faint field of 0s and 1s settles within about a second, a quiet texture behind the page.
+     Contact band: when it scrolls into view, the digits settle into a brass section sign (§), once.
+     Respects reduced motion, redraws on resize, and stops completely when finished. */
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function bits(canvas) {
+    const host = canvas.parentElement, ctx = canvas.getContext("2d"), css = getComputedStyle(document.documentElement);
+    const closing = canvas.dataset.bits === "still";
+    const base = closing ? css.getPropertyValue("--ledger-ink").trim() : css.getPropertyValue("--ledger").trim();
+    const glyphColour = matchMedia("(prefers-color-scheme: dark)").matches ? css.getPropertyValue("--ledger-ink").trim() : css.getPropertyValue("--brass").trim();
+    const CELL = 18; let cells = [], W = 0, H = 0, raf = 0, start = 0, done = false, played = false;
+    function layout() {
+      const r = host.getBoundingClientRect(), dpr = Math.min(devicePixelRatio || 1, 2); W = Math.ceil(r.width); H = Math.ceil(r.height);
+      canvas.width = W * dpr; canvas.height = H * dpr; ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      let data = null;
+      if (closing && W > 760) { // the § only where there is room beside the text
+        const m = document.createElement("canvas"), mc = m.getContext("2d"); m.width = W; m.height = H;
+        mc.font = `700 ${Math.min(H * 1.15, W * .3)}px "Source Serif 4", Georgia, serif`; mc.textAlign = "center"; mc.textBaseline = "middle";
+        mc.fillText("§", W * .88, H * .52); data = mc.getImageData(0, 0, W, H).data;
+      }
+      cells = [];
+      for (let y = CELL / 2; y < H; y += CELL) for (let x = CELL / 2; x < W; x += CELL) {
+        const inGlyph = data ? data[((y | 0) * W + (x | 0)) * 4 + 3] > 128 : false;
+        cells.push({ x, y, inGlyph, ch: Math.random() < .5 ? "0" : "1", settle: (closing ? 300 : 150) + Math.random() * (closing ? 1300 : 700) + (inGlyph ? 300 : 0) });
+      }
+    }
+    function draw(t) {
+      ctx.clearRect(0, 0, W, H); ctx.font = `500 11px ui-monospace, "SF Mono", Menlo, Consolas, monospace`; ctx.textAlign = "center"; ctx.textBaseline = "middle";
+      let moving = false;
+      for (const c of cells) {
+        const settled = done || t >= c.settle;
+        if (!settled) { moving = true; if (Math.random() < .3) c.ch = Math.random() < .5 ? "0" : "1"; }
+        const k = done ? 1 : Math.min(1, t / c.settle);
+        ctx.globalAlpha = c.inGlyph ? .12 + .7 * k : (closing ? .08 : .06);
+        ctx.fillStyle = c.inGlyph && settled ? glyphColour : base; ctx.fillText(c.ch, c.x, c.y);
+      }
+      ctx.globalAlpha = 1; return moving;
+    }
+    function frame(now) { if (!start) start = now; if (draw(now - start)) raf = requestAnimationFrame(frame); else { done = true; draw(0); } }
+    function play() { if (played) return; played = true; if (reduce) { done = true; draw(0); return; } start = 0; raf = requestAnimationFrame(frame); }
+    function init() {
+      layout();
+      if (closing && "IntersectionObserver" in window) { draw(0.0001); const io = new IntersectionObserver(es => { if (es.some(e => e.isIntersecting)) { io.disconnect(); play(); } }, { threshold: .45 }); io.observe(host); }
+      else play();
+    }
+    let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => { cancelAnimationFrame(raf); done = true; played = true; layout(); draw(0); }, 150); });
+    (document.fonts?.ready || Promise.resolve()).then(init);
+  }
+  $$("canvas.bits").forEach(bits);
 })();
