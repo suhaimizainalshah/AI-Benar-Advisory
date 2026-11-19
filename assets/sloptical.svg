@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" role="img" aria-label="Sloptical">
+  <defs><clipPath id="lens"><circle cx="54" cy="54" r="27"/></clipPath></defs>
+  <rect width="128" height="128" rx="30" fill="#211C2E"/>
+  <g transform="translate(5 5)">
+  <g clip-path="url(#lens)" transform="rotate(-24 54 54)">
+    <rect x="18" y="31" width="72" height="13" rx="6.5" fill="#FFE45C"/>
+    <rect x="18" y="48" width="72" height="13" rx="6.5" fill="#FFA64D"/>
+    <rect x="18" y="65" width="72" height="13" rx="6.5" fill="#FF7EB6"/>
+  </g>
+  <circle cx="54" cy="54" r="31" fill="none" stroke="#FFFFFF" stroke-width="8"/>
+  <path d="M77 77 L101 101" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round"/>
+  </g>
+</svg>
