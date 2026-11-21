@@ -54,11 +54,16 @@
     const hits = RULES.filter(r => r.when(a));
     const val = (v) => (typeof v === "function" ? v(a) : v);
     const strict = hits.filter(h => h.tag === "Applies now").length;
+    // Prefilled email so a visitor can send their answers and get a written summary back.
+    const placeNames = { EU: "European Union", UK: "United Kingdom", VN: "Vietnam", KR: "South Korea", ASEAN: "Singapore or wider ASEAN" };
+    const useNames = { chat: "Chats with customers", content: "Makes images, video or text we publish", screen: "Screens job or volunteer applicants", decide: "Decides who gets a service, grade or loan", internal: "Helps staff with writing or research" };
+    const mailBody = encodeURIComponent(`My AI rules check results:\nPlaces: ${where.map(w => placeNames[w] || w).join(", ")}\nWhat our AI does: ${uses.map(u => useNames[u] || u).join(", ")}\nSector: ${sector}\n\nPlease reply with a written summary of what applies to us.`);
     result.innerHTML = `
       <h3>${strict ? `${strict} binding rule${strict > 1 ? "s" : ""} probably apply to you` : "Mostly good practice for now"}</h3>
       <p class="next">${hits.length > 4 ? "That’s a lot to track at once. A readiness assessment puts them in order." : "A website check is a quick way to see where you stand."}</p>
       <ul class="rules">${hits.map((h, i) => `<li style="--i:${i}"><span class="tag${h.soon ? " soon" : ""}${h.voluntary ? " voluntary" : ""}">${h.tag}</span><b>${val(h.title)}</b><small>${val(h.note)}</small></li>`).join("")}</ul>
       <a class="btn block" href="#contact" data-track="check_contact">Talk through my results</a>
+      <p class="fine" style="margin-top:.7rem">Prefer email? <a href="mailto:suhaimizainalshah@gmail.com?subject=${encodeURIComponent("AI rules check — please send a written summary")}&body=${mailBody}" data-track="check_email">Send me these answers</a> and I’ll reply with a written summary.</p>
       <p class="fine" style="margin-top:.7rem">A first indication based on your answers, not legal advice.</p>`;
     result.hidden = false; result.focus({ preventScroll: true }); result.scrollIntoView({ behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "nearest" });
     count("check_done");
@@ -80,7 +85,7 @@
   })();
 
   // Private stats: add #stats to the address.
-  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "Compliscope link", tool_sloptical: "Sloptical link" };
+  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", check_email: "After check: email my answers", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "Compliscope link", tool_sloptical: "Sloptical link" };
   async function showStats() {
     const box = $("#stats"), dl = $("#stats-list"); box.hidden = false; dl.innerHTML = "<dt>Loading…</dt><dd></dd>";
     const rows = await Promise.all(Object.entries(LABELS).map(async ([k, l]) => [l, await get(k)]));

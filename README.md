@@ -4,7 +4,7 @@ A fast, accessible, cookieless one-page site for an AI compliance consultancy. P
 
 ## Before you publish
 1. **Booking link:** the free call uses `https://calendly.com/suhaimizainalshah/20-minute-meeting` (the button with id `book` in `index.html`). The paid 30-minute walkthrough link (`/30min`) is deliberately not on the site: send it to clients only after they pay.
-2. **Domain:** replace `https://compliscope.example/` in the `canonical` tag with your real address.
+2. **Domain:** done — the `canonical` tag now points at the live GitHub Pages address (`https://suhaimizainalshah.github.io/Compliscope-Advisory/`). Update it if the site moves to a custom domain.
 3. **Counter name:** in `app.js`, change `ANALYTICS.namespace` to a name only you use.
 4. **Public visitor count:** it stays hidden until visits reach `ANALYTICS.showVisitsFrom` (1,000). Change or set `on: false` to switch counting off.
 5. **Tech For Good Institute article:** once “From Rulebooks to Responses” is published, add it to the “AI policy research” strand in the About section, with a link.
