@@ -1,4 +1,4 @@
-# Compliscope Advisory website
+# AI Benar Advisory website
 
 A fast, accessible, cookieless one-page site for an AI compliance consultancy. Plain HTML, CSS and JavaScript: no build step, no framework, no external fonts.
 
