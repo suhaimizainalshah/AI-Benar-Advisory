@@ -1,4 +1,4 @@
-/* Compliscope Advisory: civic ledger design.
+/* AI Benar Advisory: civic ledger design.
    Tokens first, then layout, then components. No frameworks, no external requests. */
 @font-face { font-family: "Source Serif 4"; src: url(fonts/source-serif-4-latin-600-normal.woff2) format("woff2"); font-weight: 600; font-display: swap; }
 @font-face { font-family: "Source Serif 4"; src: url(fonts/source-serif-4-latin-700-normal.woff2) format("woff2"); font-weight: 700; font-display: swap; }

@@ -1,4 +1,4 @@
-/* Compliscope Advisory site script. No cookies, no third-party trackers.
+/* AI Benar Advisory site script. No cookies, no third-party trackers.
    1. Mobile menu  2. Timeline "next deadline"  3. The AI rules check  4. Anonymous counts */
 "use strict";
 (() => {
@@ -85,7 +85,7 @@
   })();
 
   // Private stats: add #stats to the address.
-  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", check_email: "After check: email my answers", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "Compliscope link", tool_sloptical: "Sloptical link" };
+  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", check_email: "After check: email my answers", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "AI Benar link", tool_sloptical: "AI Asli link" };
   async function showStats() {
     const box = $("#stats"), dl = $("#stats-list"); box.hidden = false; dl.innerHTML = "<dt>Loading…</dt><dd></dd>";
     const rows = await Promise.all(Object.entries(LABELS).map(async ([k, l]) => [l, await get(k)]));
