@@ -1,0 +1,314 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<meta name="color-scheme" content="light dark"/>
+<link rel="icon" href="data:,"/>
+<title>Article 50 Labelling Helper — Compliscope Advisory</title>
+<meta name="description" content="Free Article 50 labelling helper: answer five questions and get the right EU AI Act disclosure wording, the machine-readable marking to embed, and a dated audit record."/>
+<link rel="canonical" href="https://suhaimizainalshah.github.io/Compliscope-Advisory/tools/article-50-labelling-helper.html"/>
+
+<style>
+:root{
+  --bg:#f4f5f1; --surface:#ffffff; --surface2:#eef2ee; --ink:#16211d; --muted:#5a6b63; --line:#d8ddd6;
+  --teal:#0e6b5e; --teal-dark:#0a4f45; --amber:#b45309; --amber-bg:#fef3c7; --red:#b42318; --red-bg:#fef2f2;
+  --green-bg:#ecfdf5; --radius:14px;
+}
+@media (prefers-color-scheme: dark){
+  :root{ --bg:#111613; --surface:#1a211e; --surface2:#222b27; --ink:#edf2ee; --muted:#a8b8af; --line:#33413a; --teal:#3ec9b2; --teal-dark:#3ec9b2; --amber-bg:#3a2e12; --green-bg:#12332a; --red-bg:#3a1a18; }
+}
+*{box-sizing:border-box}
+@font-face{font-family:"Source Serif 4";src:url(../fonts/source-serif-4-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Source Serif 4";src:url(../fonts/source-serif-4-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(../fonts/public-sans-latin-400-normal.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(../fonts/public-sans-latin-600-normal.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Public Sans";src:url(../fonts/public-sans-latin-700-normal.woff2) format("woff2");font-weight:700;font-display:swap}
+.sitebar{border-bottom:1px solid var(--line);background:var(--surface)}
+.sitebar .wrap{display:flex;align-items:center;gap:14px;padding-top:12px;padding-bottom:12px}
+.sitebar a.brand{display:inline-flex;align-items:center;gap:8px;font-weight:800;color:var(--ink);text-decoration:none;font-size:1.05rem}
+.sitebar a.brand em{font-style:normal;color:var(--teal)}
+.sitebar .spacer{flex:1}
+.sitebar a.call{font-weight:700;white-space:nowrap}
+body{margin:0;font-family:"Public Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6}
+h1,h2,h3{font-family:"Source Serif 4",Georgia,serif;line-height:1.05;margin:0}
+h1{font-size:clamp(2.2rem,6vw,4.2rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;margin-bottom:.6rem}
+h3{font-size:1.25rem;font-weight:700}
+p{margin:.5rem 0 1rem}
+a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.hero{padding:44px 0 28px;border-bottom:4px solid var(--teal)}
+.eyebrow{font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;font-weight:800;color:var(--teal)}
+.lede{font-size:1.15rem;max-width:720px;color:var(--muted)}
+.deadline{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0}
+.deadline div{flex:1 1 220px;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--amber);padding:14px 16px;border-radius:10px}
+.deadline b{display:block;font-size:1.05rem}
+.deadline span{font-size:.9rem;color:var(--muted)}
+section{padding:36px 0}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:20px}
+label{font-weight:700;display:block;margin:16px 0 8px;font-size:.95rem}
+label:first-child{margin-top:0}
+.options{display:flex;flex-wrap:wrap;gap:8px}
+.opt{border:1.5px solid var(--line);background:var(--surface);color:var(--ink);padding:10px 14px;border-radius:999px;cursor:pointer;font:inherit;font-weight:600;min-height:44px}
+.opt[aria-pressed="true"]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.preset{flex:1 1 180px;text-align:left;background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;font:inherit;min-height:52px}
+.preset b{display:block}
+.preset span{font-size:.85rem;color:var(--muted)}
+.verdict{border-radius:10px;padding:16px;margin-bottom:14px}
+.verdict.must{background:var(--red-bg);border:1px solid #f0b8b2}
+.verdict.should{background:var(--amber-bg);border:1px solid #e5c07a}
+.verdict.none{background:var(--green-bg);border:1px solid #8fd0b8}
+.verdict h3{margin-bottom:4px}
+.mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,monospace;font-size:.85rem;background:var(--surface2);border:1px solid var(--line);border-radius:8px;padding:12px;white-space:pre-wrap;word-break:break-word}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--teal);color:#fff;border:0;padding:12px 18px;border-radius:999px;font:inherit;font-weight:700;cursor:pointer;min-height:48px;text-decoration:none}
+.btn.secondary{background:transparent;color:var(--teal);border:1.5px solid var(--teal)}
+.btnrow{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.flow{display:flex;flex-direction:column;gap:0;align-items:center;margin:20px 0}
+.fbox{width:min(620px,100%);background:var(--surface);border:1.5px solid var(--line);border-radius:12px;padding:14px 18px;text-align:center}
+.fbox.start{border-color:var(--teal);background:var(--surface2)}
+.fbox.decision{border-radius:50%/12px;border-color:var(--amber)}
+.fbox.end-must{border-color:var(--red)} .fbox.end-ok{border-color:var(--teal)}
+.arrow{font-size:1.4rem;color:var(--teal);line-height:1;padding:4px}
+.branch{display:grid;grid-template-columns:1fr 1fr;gap:14px;width:min(760px,100%)}
+@media(max-width:640px){.branch{grid-template-columns:1fr}}
+table{width:100%;border-collapse:collapse;font-size:.95rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.price{font-weight:800;color:var(--teal-dark);white-space:nowrap}
+.tag{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--surface2);border:1px solid var(--line)}
+.rec{background:var(--teal);color:#fff;border-radius:var(--radius);padding:24px}
+.rec h2,.rec p{color:#fff} .rec a{color:#fff}
+.steps{counter-reset:s;display:grid;gap:14px}
+.step{display:flex;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.step::before{counter-increment:s;content:counter(s);flex:0 0 38px;height:38px;border-radius:50%;background:var(--teal);color:#fff;display:grid;place-items:center;font-weight:800}
+.small{font-size:.88rem;color:var(--muted)}
+footer{border-top:1px solid var(--line);padding:24px 0 40px}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:20px;background:var(--ink);color:var(--bg);padding:10px 18px;border-radius:999px;font-weight:700;opacity:0;pointer-events:none;transition:.25s}
+.toast.show{opacity:1}
+@media(max-width:640px){th,td{padding:8px 6px;font-size:.85rem;word-break:break-word}.card{overflow:hidden}}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<div class="sitebar"><div class="wrap"><a class="brand" href="../index.html"><img src="../logo.svg" alt="" width="28" height="28">Compliscope <em>Advisory</em></a><span class="spacer"></span><a class="call" href="../index.html#contact">Book a free call</a></div></div>
+<header class="hero"><div class="wrap">
+<p class="eyebrow">Compliscope Advisory · Free tool</p>
+<h1>Article 50 Labelling Helper</h1>
+<p class="lede">Answer up to five short questions about a piece of content and get the right EU AI Act Article 50 action: the disclosure wording to publish, the machine-readable marking to embed, and a dated audit record to file. Free, in your browser, no account and nothing uploaded.</p>
+<div class="deadline">
+<div><b>2 August 2026</b><span>Article 50 transparency duties apply. Providers mark generative AI output in a machine-readable format; deployers disclose deepfakes and certain AI text.</span></div>
+<div><b>2 December 2026</b><span>Grace period ends for generative AI systems already on the market before 2 Aug 2026 (Digital Omnibus) — the machine-readable marking deadline that makes this tool timely.</span></div>
+<div><b>Free &amp; local</b><span>This helper runs entirely in your browser. Nothing you type or select is sent anywhere — the same privacy promise as Sloptical and Compliscope.</span></div>
+<div><b>Fines up to €15M or 3%</b><span>Breaches of the Article 50 transparency duties can be fined up to €15 million or 3% of worldwide annual turnover.</span></div>
+</div>
+<p class="small">General guidance only, not legal advice. Based on Article 50 as summarised at <a href="https://artificialintelligenceact.eu/article/50/">artificialintelligenceact.eu/article/50</a> and its <a href="https://artificialintelligenceact.eu/transparency-rules-article-50/">practical guide</a>.</p>
+</div></header>
+
+<main>
+<!-- DEMO -->
+<section id="demo"><div class="wrap">
+<h2>Try it: the helper in action</h2>
+<p style="max-width:720px">Pick a ready-made scenario or answer the questions yourself. The output on the right updates live. No account, no upload — everything runs in your browser.</p>
+
+<div class="presets" role="group" aria-label="Sample scenarios">
+<button class="preset" data-preset="news"><b>① Local news article</b><span>AI-drafted, editor-reviewed, public interest</span></button>
+<button class="preset" data-preset="agency"><b>② Agency campaign image</b><span>Fully AI-generated hero image for an ad</span></button>
+<button class="preset" data-preset="video"><b>③ Synthetic video</b><span>AI avatar giving a customer testimonial</span></button>
+<button class="preset" data-preset="chatbot"><b>④ Support chatbot</b><span>AI chat widget on a company website</span></button>
+</div>
+
+<div class="grid2">
+<div class="card">
+<label>1 · What are you publishing or deploying?</label>
+<div class="options" data-q="type">
+<button class="opt" data-v="text" aria-pressed="true">Text article / post</button>
+<button class="opt" data-v="image" aria-pressed="false">Image</button>
+<button class="opt" data-v="video" aria-pressed="false">Video or audio</button>
+<button class="opt" data-v="chatbot" aria-pressed="false">Chatbot / AI interaction</button>
+</div>
+<label>2 · What is your role?</label>
+<div class="options" data-q="role">
+<button class="opt" data-v="deployer" aria-pressed="true">Deployer — I publish / use it</button>
+<button class="opt" data-v="provider" aria-pressed="false">Provider — I built the AI system</button>
+</div>
+<label>3 · How was AI involved?</label>
+<div class="options" data-q="ai">
+<button class="opt" data-v="assisted" aria-pressed="true">AI-assisted (drafted / edited)</button>
+<button class="opt" data-v="generated" aria-pressed="false">Fully AI-generated</button>
+<button class="opt" data-v="none" aria-pressed="false">No AI involved</button>
+</div>
+<div id="extraText">
+<label>4 · Text only: is it on a matter of public interest?</label>
+<div class="options" data-q="pubint">
+<button class="opt" data-v="yes" aria-pressed="true">Yes</button>
+<button class="opt" data-v="no" aria-pressed="false">No</button>
+</div>
+<label>5 · Text only: human review with editorial responsibility?</label>
+<div class="options" data-q="review">
+<button class="opt" data-v="yes" aria-pressed="true">Yes — a named human reviewed it and takes responsibility</button>
+<button class="opt" data-v="no" aria-pressed="false">No</button>
+</div>
+</div>
+<div id="extraMedia" hidden>
+<label>4 · Media only: does it look like a real person, place or event (a deepfake)?</label>
+<div class="options" data-q="deepfake">
+<button class="opt" data-v="yes" aria-pressed="false">Yes</button>
+<button class="opt" data-v="no" aria-pressed="true">No — clearly synthetic / illustrative</button>
+</div>
+</div>
+<p class="small" style="margin-top:16px">Artistic, fictional or satirical works have lighter duties under Art. 50(4) — disclosure is limited to the existence of the generated content, in a way that doesn't hamper display of the work. The helper flags this rather than forcing a banner.</p>
+</div>
+
+<div class="card" aria-live="polite">
+<div class="verdict should" id="verdictBox"><h3 id="verdictTitle">—</h3><p id="verdictBody" style="margin:0"></p></div>
+<label style="margin-top:4px">Publish this label</label>
+<div class="mono" id="labelOut"></div>
+<label>Embed this machine-readable marking</label>
+<div class="mono" id="codeOut"></div>
+<label>Audit record (what gets filed)</label>
+<div class="mono" id="auditOut"></div>
+<div class="btnrow">
+<button class="btn" id="copyLabel">Copy label</button>
+<button class="btn secondary" id="copyCode">Copy marking</button>
+<button class="btn secondary" id="downloadAudit">Download audit record (.txt)</button>
+</div>
+<p class="small" style="margin-top:12px">The audit record saves locally (date, content, answers, decision, who decided) — the evidence trail a deployer needs if a regulator or client asks. That record-keeping, not the label alone, is what turns a label into proof you checked.</p>
+</div>
+</div>
+</div></section>
+
+<!-- FLOWCHART -->
+<section style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+<h2>The user flow, end to end</h2>
+<p style="max-width:700px">Up to five questions, three possible outcomes. No account, no upload, under a minute.</p>
+<div class="flow">
+<div class="fbox start"><b>START</b> — User opens the helper (web page, extension, or WordPress panel) with a draft or published item</div><div class="arrow">↓</div>
+<div class="fbox decision"><b>Was AI used</b> to generate or materially assist this content?</div><div class="arrow">↓</div>
+<div class="branch">
+<div class="fbox end-ok"><b>No AI → No label needed</b><br><span class="small">Still save the audit record — it proves you checked.</span></div>
+<div class="fbox"><b>Yes → What type is it?</b><br><span class="small">Text · Image · Video/audio · Chatbot interaction</span></div>
+</div><div class="arrow">↓</div>
+<div class="fbox decision"><b>Type-specific test</b><br><span class="small">Text: public interest? human review + editorial responsibility?<br>Media: does it resemble a real person/place/event?<br>Chatbot: would a user realise it's AI?</span></div><div class="arrow">↓</div>
+<div class="branch">
+<div class="fbox end-must"><b>DISCLOSE</b><br><span class="small">Visible label + machine-readable marking + audit record</span></div>
+<div class="fbox end-ok"><b>EXCEPTION APPLIES</b><br><span class="small">e.g. reviewed public-interest text under editorial responsibility — no label required, audit record still saved with the reasoning</span></div>
+</div><div class="arrow">↓</div>
+<div class="fbox start"><b>DONE</b> — Copy the label, paste the marking, download the record. Optional next step offered once: a human readiness review.</div>
+</div>
+
+<h3 style="margin:26px 0 10px">Worked example — Scenario ① in words</h3>
+<div class="steps">
+<div class="step"><div><b>A reporter drafts a council-meeting report with an AI tool.</b> An editor checks the facts, rewrites two paragraphs, and the named editor takes responsibility for publication.</div></div>
+<div class="step"><div><b>The helper asks:</b> text → deployer → AI-assisted → public interest: yes → human review with editorial responsibility: yes.</div></div>
+<div class="step"><div><b>Result: the Art. 50(4) exception applies.</b> AI-generated text on matters of public interest normally must be disclosed — <em>unless</em> it has undergone human review and a person holds editorial responsibility. No label is legally required, but the helper still issues the audit record and offers an optional good-practice transparency note.</div></div>
+<div class="step"><div><b>Contrast with Scenario ③:</b> an AI avatar testimonial resembles a real customer who never said those words. That's a deepfake under Art. 50(4) — disclosure is mandatory, no editorial-review exception saves it, and the label must appear before or at first exposure.</div></div>
+</div>
+</div></section>
+
+<!-- WHAT IT COVERS -->
+<section><div class="wrap">
+<h2>Which Article 50 duty does what</h2>
+<div class="card" style="padding:6px 20px;overflow-x:auto">
+<table>
+<tr><th>Duty</th><th>Who</th><th>What the helper generates</th></tr>
+<tr><td><b>Art. 50(1)</b> — AI interaction</td><td>Deployer of a chatbot / AI system people interact with</td><td>Notice that the user is interacting with AI — unless that is already obvious from the circumstances.</td></tr>
+<tr><td><b>Art. 50(2)</b> — Machine-readable marking</td><td>Provider of a generative AI system</td><td>Marking snippet so outputs are detectable as artificially generated or manipulated, in a machine-readable format.</td></tr>
+<tr><td><b>Art. 50(4)</b> — Deepfakes</td><td>Deployer generating / manipulating image, audio or video resembling real people, places or events</td><td>Disclosure label, timed for first exposure; lighter existence-only wording for artistic / fictional / satirical work.</td></tr>
+<tr><td><b>Art. 50(4), 2nd part</b> — Public-interest text</td><td>Deployer publishing AI-generated text informing the public</td><td>Disclosure label — or, where human review + editorial responsibility applies, a documented exception record. (Art. 50(5) then governs timing: information must be clear and distinguishable at first exposure.)</td></tr>
+</table>
+</div>
+<p class="small">Duties as summarised in the research report from <a href="https://artificialintelligenceact.eu/article/50/">artificialintelligenceact.eu</a>. Emotion-recognition and biometric-categorisation disclosures under Art. 50 are out of scope for this helper — that's a separate, higher-risk workflow and a natural paid-consultancy conversation, not a free tool.</p>
+</div></section>
+
+<section style="background:var(--surface);border-block:1px solid var(--line)"><div class="wrap">
+<h2>Want a human to check your labelling?</h2>
+<p style="max-width:720px">The helper covers the standard cases. If your content is unusual — mixed media, several markets, a whole archive to check, or a chatbot that talks to customers — I can review it properly. A readiness assessment maps every AI system you run against the rules that apply to it, with a six-month plan to close the gaps.</p>
+<div class="btnrow"><a class="btn" href="../index.html#contact">Book a free 20-minute call</a><a class="btn secondary" href="../index.html#services">See services and prices</a></div>
+</div></section>
+</main>
+
+<footer><div class="wrap">
+<p class="small">Article 50 duties and dates checked 21 November 2026; laws and guidance change, so every engagement starts by confirming the current position. This helper gives general guidance, not legal advice. Compliscope Advisory is a compliance and governance consultancy, not a law firm. <a href="../index.html">Compliscope Advisory</a> · <a href="../index.html#contact">Book a free 20-minute call</a></p>
+<p class="small">© 2026 Suhaimi Zainal Shah, trading as Compliscope Advisory, London.</p>
+</div></footer>
+<div class="toast" id="toast">Copied</div>
+
+<script>
+var state={type:'text',role:'deployer',ai:'assisted',pubint:'yes',review:'yes',deepfake:'no'};
+var presets={
+ news:{type:'text',role:'deployer',ai:'assisted',pubint:'yes',review:'yes',deepfake:'no'},
+ agency:{type:'image',role:'deployer',ai:'generated',pubint:'yes',review:'yes',deepfake:'no'},
+ video:{type:'video',role:'deployer',ai:'generated',pubint:'yes',review:'yes',deepfake:'yes'},
+ chatbot:{type:'chatbot',role:'deployer',ai:'generated',pubint:'yes',review:'yes',deepfake:'no'}
+};
+function syncUI(){
+  document.querySelectorAll('.options').forEach(function(g){
+    var q=g.getAttribute('data-q');
+    g.querySelectorAll('.opt').forEach(function(b){ b.setAttribute('aria-pressed', b.getAttribute('data-v')===state[q] ? 'true':'false'); });
+  });
+  document.getElementById('extraText').hidden = state.type!=='text';
+  document.getElementById('extraMedia').hidden = !(state.type==='image'||state.type==='video');
+  render();
+}
+function decide(){
+  var now=new Date().toISOString().slice(0,10);
+  var r={level:'none',title:'',body:'',label:'',code:''};
+  if(state.ai==='none'){
+    r={level:'none',title:'No label required — but keep the record',body:'You have recorded that no AI was involved. Article 50 labelling duties are not triggered. The audit record below is your evidence that the question was asked and answered.',label:'No label to publish.',code:'<!-- No Article 50 marking required: no AI involvement recorded on '+now+' -->'};
+  } else if(state.type==='chatbot'){
+    r={level:'must',title:'Disclose the AI interaction — Art. 50(1)',body:'People interacting with an AI system must be informed they are doing so, unless it is obvious from the context. A chat widget is rarely obvious enough — disclose at the start of the interaction.',label:'You are chatting with an AI assistant. A human can take over at any time — just ask.',code:'<div role="note" data-ai-disclosure="article-50-1">You are interacting with an AI system.</div>'};
+  } else if(state.role==='provider'){
+    r={level:'must',title:'Mark the output — Art. 50(2)',body:'Providers of generative AI systems must ensure outputs are marked in a machine-readable format, detectable as artificially generated or manipulated. The visible label helps users; the embedded marking is the legal duty.',label:'This content was generated by AI.',code:'<meta name="ai-generated" content="true">\n<script type="application/ld+json">{"@context":"https://schema.org","@type":"CreativeWork","isBasedOn":"AI-generated output","aiDisclosure":"Article 50(2) machine-readable marking","dateCreated":"'+now+'"}</'+'script>'};
+  } else if((state.type==='image'||state.type==='video') && state.deepfake==='yes'){
+    r={level:'must',title:'Disclose the deepfake — Art. 50(4)',body:'This content resembles a real person, place or event but was artificially generated or manipulated. Disclosure is mandatory and should reach the audience at first exposure — before or as the content plays or appears, not buried in credits.',label: state.type==='video' ? 'This video features an AI-generated person. The words spoken were not said by a real customer.' : 'This image was artificially generated and does not depict a real person or event.',code:'<figure data-ai-disclosure="article-50-4-deepfake">\n  <!-- Visible caption carries the same disclosure -->\n  <figcaption>AI-generated — not a real person or event.</figcaption>\n</figure>'};
+  } else if(state.type==='text' && state.pubint==='yes' && state.review==='yes' && state.ai!=='none'){
+    r={level:'none',title:'Exception applies — Art. 50(4), documented',body:'AI-generated text on matters of public interest normally must be disclosed — unless it has undergone human review and a person holds editorial responsibility. You recorded both, so no label is legally required. The audit record below documents the exception; many publishers still add the optional note for reader trust.',label:'Optional good-practice note: This article was drafted with AI assistance and reviewed and edited by [named editor], who takes editorial responsibility for it.',code:'<!-- Article 50(4) exception recorded '+now+': human review + editorial responsibility. Optional transparency note published. -->'};
+  } else if(state.type==='text' && state.pubint==='yes'){
+    r={level:'must',title:'Disclose the AI text — Art. 50(4)',body:'This is AI-generated or AI-assisted text published to inform the public on a matter of public interest, without the human-review / editorial-responsibility exception. Disclosure is required.',label:'This article was generated with the assistance of AI and was not subject to full human editorial review.',code:'<p data-ai-disclosure="article-50-4-text">This text was generated with AI assistance.</p>'};
+  } else if(state.type==='image'||state.type==='video'){
+    r={level:'should',title:'Label it — Art. 50(2)/(4) good practice',body:'This AI-generated media does not purport to be a real person, place or event, so the deepfake duty is not triggered in its strict form. A clear label is still the safe, trust-building default — and if you are the provider, machine-readable marking under Art. 50(2) applies to the output itself.',label: state.type==='image' ? 'Image created with AI.' : 'This media was created with AI.',code:'<meta name="ai-generated" content="true">\n<!-- IPTC DigitalSourceType: trainedAlgorithmicMedia -->'};
+  } else {
+    r={level:'should',title:'Label recommended',body:'This AI-assisted content falls outside the strict public-interest text duty, but a short transparency note is low-cost, matches the direction of the rules, and protects you if the content is republished in a public-interest context.',label:'Created with AI assistance.',code:'<p data-ai-disclosure="voluntary">Created with AI assistance.</p>'};
+  }
+  return r;
+}
+function render(){
+  var r=decide();
+  var box=document.getElementById('verdictBox');
+  box.className='verdict '+r.level;
+  document.getElementById('verdictTitle').textContent=r.title;
+  document.getElementById('verdictBody').textContent=r.body;
+  document.getElementById('labelOut').textContent=r.label;
+  document.getElementById('codeOut').textContent=r.code;
+  var audit='ARTICLE 50 LABELLING RECORD\nDate: '+new Date().toISOString()+'\nContent type: '+state.type+'\nRole: '+state.role+'\nAI involvement: '+state.ai+'\nPublic interest (text): '+state.pubint+'\nHuman review + editorial responsibility: '+state.review+'\nDeepfake (resembles real person/place/event): '+state.deepfake+'\nDecision: '+r.title+'\nLabel issued: '+r.label+'\nNote: General guidance only, not legal advice. Record generated locally in the browser.';
+  document.getElementById('auditOut').textContent=audit;
+  box._audit=audit; box._label=r.label; box._code=r.code;
+}
+document.querySelectorAll('.options').forEach(function(g){
+  g.addEventListener('click',function(e){
+    var b=e.target.closest('.opt'); if(!b) return;
+    state[g.getAttribute('data-q')]=b.getAttribute('data-v'); syncUI();
+  });
+});
+document.querySelectorAll('.preset').forEach(function(p){
+  p.addEventListener('click',function(){ state=Object.assign({},presets[p.getAttribute('data-preset')]); syncUI(); document.getElementById('demo').scrollIntoView({behavior:'smooth'}); });
+});
+function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(function(){t.classList.remove('show')},1600); }
+function copyText(txt,msg){
+  if(navigator.clipboard&&navigator.clipboard.writeText){ navigator.clipboard.writeText(txt).then(function(){toast(msg)}); }
+  else{ var ta=document.createElement('textarea'); ta.value=txt; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast(msg); }
+}
+document.getElementById('copyLabel').addEventListener('click',function(){ copyText(document.getElementById('verdictBox')._label,'Label copied'); });
+document.getElementById('copyCode').addEventListener('click',function(){ copyText(document.getElementById('verdictBox')._code,'Marking copied'); });
+document.getElementById('downloadAudit').addEventListener('click',function(){
+  var blob=new Blob([document.getElementById('verdictBox')._audit],{type:'text/plain'});
+  var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='article-50-audit-record.txt'; a.click(); URL.revokeObjectURL(a.href); toast('Audit record downloaded');
+});
+syncUI();
+</script>
+</body>
+</html>
