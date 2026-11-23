@@ -85,7 +85,7 @@
   })();
 
   // Private stats: add #stats to the address.
-  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", check_email: "After check: email my answers", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "AI Benar link", tool_sloptical: "AI Asli link" };
+  const LABELS = { visits: "Visits", check_done: "Checks completed", hero_contact: "Hero: book a call", nav_contact: "Menu: book a call", check_contact: "After check: talk it through", check_email: "After check: email my answers", book_call: "Choose a time", email: "Email clicks", tool_compliscope: "AI Benar link", tool_littlelightlit: "Tools: Little Light Lit on GitHub", tool_ifleavesweave: "Tools: If Leaves Weave on GitHub", tool_sloptical: "AI Asli link" };
   async function showStats() {
     const box = $("#stats"), dl = $("#stats-list"); box.hidden = false; dl.innerHTML = "<dt>Loading…</dt><dd></dd>";
     const rows = await Promise.all(Object.entries(LABELS).map(async ([k, l]) => [l, await get(k)]));
