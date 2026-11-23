@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>AI Benar Advisory: AI compliance for the EU, Vietnam and Asia</title>
-<meta name="description" content="Independent AI compliance and governance consultancy in London. EU AI Act, Vietnam’s AI Law, South Korea’s AI Basic Act and data protection, explained and put into practice.">
+<title>AI Benar Advisory: AI and data compliance for Europe, Asia, ASEAN and the Arab Gulf</title>
+<meta name="description" content="Independent AI and data compliance consultancy in London, for the EU and UK, South Korea and Vietnam, Singapore, Malaysia, Indonesia, Thailand and the Philippines, and Qatar, the UAE and Saudi Arabia. In English, Malay and Bahasa Indonesia. Not legal advice.">
 <meta name="theme-color" content="#1b5e4f">
 <link rel="icon" href="logo.svg" type="image/svg+xml">
 <link rel="canonical" href="https://suhaimizainalshah.github.io/AI-Benar-Advisory/">
@@ -15,7 +15,7 @@
 <meta property="og:image" content="https://suhaimizainalshah.github.io/AI-Benar-Advisory/logo.svg">
 <link rel="preload" href="fonts/source-serif-4-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"AI Benar Advisory","description":"AI compliance and governance consultancy for the EU, Vietnam, South Korea and ASEAN.","areaServed":["European Union","United Kingdom","Vietnam","South Korea","Southeast Asia"],"address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"founder":{"@type":"Person","name":"Suhaimi Zainal Shah","alumniOf":"London School of Economics and Political Science","image":"assets/suhaimi-square.jpg"}}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfessionalService","name":"AI Benar Advisory","description":"AI and data compliance consultancy for Europe, Asia, ASEAN and the Arab Gulf. Services in English, Malay and Bahasa Indonesia. Not a law firm.","areaServed":["European Union", "United Kingdom", "South Korea", "Vietnam", "Singapore", "Malaysia", "Indonesia", "Thailand", "Philippines", "Qatar", "United Arab Emirates", "Saudi Arabia"],"availableLanguage":["English","Malay","Indonesian"],"address":{"@type":"PostalAddress","addressLocality":"London","addressCountry":"GB"},"founder":{"@type":"Person","name":"Suhaimi Zainal Shah","alumniOf":"London School of Economics and Political Science","image":"assets/suhaimi-square.jpg"}}</script>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -44,7 +44,8 @@
     <div class="wrap hero-grid">
       <div class="hero-copy">
         <h1 id="hero-title">True to the rules. Right for your users.</h1>
-        <p class="lede">Independent AI compliance and governance for the EU, Vietnam, South Korea and ASEAN. Plain answers, fixed prices, and practical fixes your team can actually ship.</p>
+        <p class="lede">Independent AI and data compliance for Europe, Asia, ASEAN and the Arab Gulf. Plain answers, fixed prices, and practical fixes your team can actually ship.</p>
+        <p class="coverage"><span><b>Europe</b> EU, UK</span><span><b>Asia</b> South Korea, Vietnam</span><span><b>ASEAN</b> Singapore, Malaysia, Indonesia, Thailand, the Philippines</span><span><b>Arab Gulf</b> Qatar, the UAE, Saudi Arabia</span></p>
         <ul class="outcomes" aria-label="What I can do for you">
           <li><b>Know where you stand.</b> Which AI and data laws apply to you, in which countries, and by when.</li>
           <li><b>Fix what puts you at risk.</b> Clear, prioritised changes to your website, AI tools and processes.</li>
@@ -54,51 +55,29 @@
           <a class="btn" href="#contact" data-track="hero_contact">Book a free 20-minute call</a>
           <a class="btn ghost" href="#services">See services and prices</a>
         </div>
-        <p class="trust">Founded by an LSE-trained AI governance researcher. Fixed prices from £350.</p>
+        <p class="trust">Founded by an LSE-trained AI governance researcher. Fixed prices from £350. Services in English, Malay and Bahasa Indonesia.</p>
       </div>
 
-      <form class="check" id="check" aria-labelledby="check-title" novalidate>
-        <h2 id="check-title">Which AI rules apply to you?</h2>
-        <p class="check-sub">Three questions, about a minute. Nothing you choose leaves your browser.</p>
-
-        <fieldset>
-          <legend><span class="qn">1</span>Where are the people who use your product or service?</legend>
-          <div class="chips">
-            <label><input type="checkbox" name="where" value="EU"><span>European Union</span></label>
-            <label><input type="checkbox" name="where" value="UK"><span>United Kingdom</span></label>
-            <label><input type="checkbox" name="where" value="VN"><span>Vietnam</span></label>
-            <label><input type="checkbox" name="where" value="KR"><span>South Korea</span></label>
-            <label><input type="checkbox" name="where" value="ASEAN"><span>Singapore or wider ASEAN</span></label>
+      <form class="check q" id="check" aria-labelledby="check-title" novalidate>
+          <!-- The questions, places and rules are built by app.js from the data in its "AI RULES CHECK: DATA" section. Edit the data there, not this markup. -->
+          <div class="q-head">
+            <h2 id="check-title">Which AI rules apply to you?</h2>
+            <p class="check-sub">Three quick questions. Nothing you choose leaves your browser.</p>
+            <ol class="q-steps" aria-label="Progress">
+              <li data-step="1"><span>1</span>Where</li>
+              <li data-step="2"><span>2</span>What your AI does</li>
+              <li data-step="3"><span>3</span>Sector</li>
+            </ol>
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend><span class="qn">2</span>What does your AI do?</legend>
-          <div class="chips">
-            <label><input type="checkbox" name="use" value="chat"><span>Chats with customers</span></label>
-            <label><input type="checkbox" name="use" value="content"><span>Makes images, video or text we publish</span></label>
-            <label><input type="checkbox" name="use" value="screen"><span>Screens job or volunteer applicants</span></label>
-            <label><input type="checkbox" name="use" value="decide"><span>Decides who gets a service, grade or loan</span></label>
-            <label><input type="checkbox" name="use" value="internal"><span>Helps staff with writing or research</span></label>
+          <div class="q-body" id="qBody"></div>
+          <div class="q-foot" id="qFoot">
+            <button type="button" class="btn ghost" id="qBack">Back</button>
+            <p class="q-hint" id="qHint" role="status" aria-live="polite"></p>
+            <button type="submit" class="btn" id="qNext">Next</button>
           </div>
-        </fieldset>
-
-        <fieldset>
-          <legend><span class="qn">3</span>Which sector are you in?</legend>
-          <div class="chips">
-            <label><input type="radio" name="sector" value="education"><span>Education</span></label>
-            <label><input type="radio" name="sector" value="health"><span>Health</span></label>
-            <label><input type="radio" name="sector" value="finance"><span>Finance</span></label>
-            <label><input type="radio" name="sector" value="nonprofit"><span>Non-profit</span></label>
-            <label><input type="radio" name="sector" value="other" checked><span>Something else</span></label>
-          </div>
-        </fieldset>
-
-        <button class="btn block" type="submit">Show my rules</button>
-        <p class="check-error" role="alert" hidden>Choose at least one place and one use.</p>
-        <div class="result" id="result" aria-live="polite" tabindex="-1" hidden></div>
-        <noscript><p class="check-sub">The check needs JavaScript. You can still <a href="#contact">ask me directly</a>.</p></noscript>
-      </form>
+          <div class="result" id="result" tabindex="-1" hidden></div>
+          <noscript><p class="check-sub">The check needs JavaScript. You can still <a href="#contact">ask me directly</a>.</p></noscript>
+        </form>
     </div>
   </section>
 
@@ -219,7 +198,7 @@
         <h2 id="about-title">About me</h2>
         <p class="about-lede">I’m Suhaimi Zainal Shah. I turn AI laws into practical steps that small teams can actually take, because I’ve worked on both sides: writing about how AI should be governed, and running the programmes, budgets and technology that governance has to fit. I also build free, privacy-first tools, so I know what it takes to make things that need protecting, not just to check them.</p>
         <dl class="strands">
-          <div><dt>AI policy research</dt><dd>MSc in International Social and Public Policy with Distinction, London School of Economics. At LSE IDEAS I built the <a href="https://suhaimizainalshah.github.io/ASEAN-AI-Governance-Tracker/" target="_blank" rel="noopener">ASEAN AI Governance Tracker</a>, which follows 55 AI incidents, 79 official responses and 97 instruments across all eleven ASEAN economies (verified 23 November 2026), and co-authored a forthcoming report on AI governance in ASEAN. I also maintain the <a href="https://suhaimizainalshah.github.io/EU-AI-Governance-Tracker/" target="_blank" rel="noopener">EU AI Governance Tracker</a>, which follows 7 AI incidents, 16 official responses and 29 instruments across the European Union and its 27 member states (verified 23 November 2026).<p class="eu-note"><img src="assets/eu-flag.jpg" class="eu-flag" alt="Flag of the European Union" width="36"><span class="eu-star">*</span></p></dd></div>
+          <div><dt>AI policy research</dt><dd>MSc in International Social and Public Policy with Distinction, London School of Economics. At LSE IDEAS I built the <a href="https://suhaimizainalshah.github.io/ASEAN-AI-Governance-Tracker/" target="_blank" rel="noopener">ASEAN AI Governance Tracker</a>, which follows 55 AI incidents, 79 official responses and 97 instruments across all eleven ASEAN economies (verified 23 November 2026), and co-authored a forthcoming report on AI governance in ASEAN. I also maintain the <a href="https://suhaimizainalshah.github.io/EU-AI-Governance-Tracker/" target="_blank" rel="noopener">EU AI Governance Tracker</a><sup class="fn"><a href="#fn-eu" aria-label="Footnote: not affiliated with the European Union">*</a></sup>, which follows 7 AI incidents, 16 official responses and 29 instruments across the European Union and its 27 member states (verified 23 November 2026).</dd></div>
           <div><dt>Responsible AI in practice</dt><dd>In the QS Responsible AI Consortium I lead a four-person team designing an AI coach for women in French workplaces, with GDPR and EU AI Act requirements built in from the first sketch.</dd></div>
           <div><dt>Governance and operations</dt><dd>As Head of Department at a Singapore charity, I led a ten-person team, managed a budget of up to S$100,000 a year, and directed a programme that raised S$500,000 and reported a social return of 2.5 to 1.</dd></div>
           <div><dt>Edtech and digitalisation</dt><dd>At Singapore’s Ministry of Education headquarters, I supported the national move to home-based learning, served as secretariat to the Blended Learning Policy workgroup, and trained hundreds of school ICT representatives.</dd></div>
@@ -229,7 +208,7 @@
           <li><b>Focus</b>EU AI Act, Vietnam, South Korea, ASEAN and UK data protection</li>
           <li><b>Based in</b>London, working across time zones</li>
         </ul>
-        <p class="footnote">* The European flag is used to identify the European Union. AI Benar Advisory is not affiliated with or endorsed by the European Union or any EU institution.</p>
+        <p class="footnote" id="fn-eu">* AI Benar Advisory and the EU AI Governance Tracker are independent. They are not affiliated with or endorsed by the European Union or any EU institution.</p>
       </div>
     </div>
   </section>
@@ -264,7 +243,7 @@
 
 <footer class="site-foot">
   <div class="wrap foot-row">
-    <p>© <span id="year">2026</span> Suhaimi Zainal Shah, trading as AI Benar Advisory, London. Not a law firm; no legal advice is given.</p>
+    <p>© <span id="year">2026</span> Suhaimi Zainal Shah, trading as AI Benar Advisory, London. Independent, and not affiliated with the European Union, any government or any regulator. Not a law firm: compliance and governance support, not legal advice. Services in English, Malay and Bahasa Indonesia.</p>
     <p>This site uses no cookies. It counts visits anonymously, and not at all if your browser sends Do Not Track or Global Privacy Control. <a href="privacy.html">Privacy and AI use</a></p>
   </div>
 </footer>
