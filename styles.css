@@ -277,3 +277,12 @@ details p { padding: 0 0 1.2rem; color: var(--muted); max-width: 66ch; }
 .coverage { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin: .9rem 0 0; font-size: .9rem; color: var(--muted); max-width: 60ch; }
 .coverage b { color: var(--ink); font-weight: 600; margin-right: .3rem; }
 .q .q-step legend { display: block; width: 100%; } .q .q-step legend small { display: block; }
+
+/* Back to top: bottom right, a 48px target, above the footer, clear of page content */
+.to-top { position: fixed; right: max(16px, env(safe-area-inset-right, 0px) + 16px); bottom: max(16px, env(safe-area-inset-bottom, 0px) + 16px); z-index: 20; width: 48px; height: 48px; display: grid; place-items: center; border-radius: 50%; background: var(--surface); color: var(--ledger); border: 1px solid var(--line); box-shadow: 0 6px 20px -8px rgba(0,0,0,.35); text-decoration: none; transition: transform .15s, background .15s; }
+.to-top:hover { background: var(--ledger); color: var(--ledger-ink); }
+.to-top:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+.to-top[hidden] { display: none; }
+@media (prefers-reduced-motion: no-preference) { .to-top:not([hidden]) { animation: toTopIn .2s ease; } @keyframes toTopIn { from { opacity: 0; transform: translateY(6px); } } }
+.foot-links { margin-top: .4rem; font-size: .9rem; }
+@media print { .to-top { display: none !important; } }

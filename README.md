@@ -6,8 +6,7 @@ A fast, accessible, cookieless one-page site for an independent AI and data comp
 The site offers **compliance and governance services** (website checks, readiness assessments, policy packs, workshops and retainers) for organisations whose products or services reach people in these places, listed region first:
 
 - **Europe:** European Union, United Kingdom
-- **Asia:** South Korea, Vietnam
-- **ASEAN:** Singapore, Malaysia, Indonesia, Thailand, the Philippines
+- **Asia (including ASEAN):** South Korea; and in ASEAN, Singapore, Malaysia, Indonesia, Thailand, Vietnam and the Philippines
 - **Arab Gulf:** Qatar, the United Arab Emirates, Saudi Arabia
 
 Every place listed has binding AI rules, a GDPR-style data protection law, or both. Places with only strategies and no binding AI or data protection duties are not listed.
@@ -61,6 +60,9 @@ After any change:
 2. Check the page on a phone-sized screen, in light and dark mode, and with the keyboard only (Tab, Space to tick, Enter for Next).
 3. Run an accessibility checker such as axe DevTools, and fix any contrast or labelling issues.
 4. Check that no text reads “undefined” and that the email link fills in the answers.
+
+## Navigation
+Both pages have a header that stays at the top while scrolling (on AI Hakikat it includes a **Home** link), a **Back to top** button that appears in the bottom-right corner after about one screen of scrolling, and **Back to top** and home links in the footer. The button moves keyboard focus back to the top and respects reduced-motion settings.
 
 ## Privacy
 No cookies. Anonymous visit counts only, and none when the browser sends Do Not Track or Global Privacy Control. Nothing chosen in the quiz leaves the browser, except what a visitor chooses to send by email.

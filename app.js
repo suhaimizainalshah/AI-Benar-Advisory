@@ -79,11 +79,11 @@
   };
   const REVIEWED = { en: "23 November 2026", ms: "23 November 2026", id: "23 November 2026" };
 
-  // Places: regions first, then their countries. Every place listed has AI rules or a GDPR-style data protection law.
+  // Places: regions first, then their countries. ASEAN is part of Asia; Vietnam is an ASEAN member. Every place listed has AI rules or a GDPR-style data protection law.
   const PLACES = [
     { group: { en: "Europe", ms: "Eropah", id: "Eropa" }, items: [["EU", { en: "European Union", ms: "Kesatuan Eropah", id: "Uni Eropa" }], ["UK", { en: "United Kingdom", ms: "United Kingdom", id: "Inggris Raya" }]] },
-    { group: { en: "Asia", ms: "Asia", id: "Asia" }, items: [["KR", { en: "South Korea", ms: "Korea Selatan", id: "Korea Selatan" }], ["VN", { en: "Vietnam", ms: "Vietnam", id: "Vietnam" }]] },
-    { group: { en: "ASEAN", ms: "ASEAN", id: "ASEAN" }, items: [["SG", { en: "Singapore", ms: "Singapura", id: "Singapura" }], ["MY", { en: "Malaysia", ms: "Malaysia", id: "Malaysia" }], ["ID", { en: "Indonesia", ms: "Indonesia", id: "Indonesia" }], ["TH", { en: "Thailand", ms: "Thailand", id: "Thailand" }], ["PH", { en: "Philippines", ms: "Filipina", id: "Filipina" }]] },
+    { group: { en: "Asia", ms: "Asia", id: "Asia" }, items: [["KR", { en: "South Korea", ms: "Korea Selatan", id: "Korea Selatan" }]] },
+    { group: { en: "ASEAN (in Asia)", ms: "ASEAN (di Asia)", id: "ASEAN (di Asia)" }, items: [["SG", { en: "Singapore", ms: "Singapura", id: "Singapura" }], ["MY", { en: "Malaysia", ms: "Malaysia", id: "Malaysia" }], ["ID", { en: "Indonesia", ms: "Indonesia", id: "Indonesia" }], ["TH", { en: "Thailand", ms: "Thailand", id: "Thailand" }], ["VN", { en: "Vietnam", ms: "Vietnam", id: "Vietnam" }], ["PH", { en: "Philippines", ms: "Filipina", id: "Filipina" }]] },
     { group: { en: "Arab Gulf", ms: "Teluk Arab", id: "Teluk Arab" }, items: [["QA", { en: "Qatar", ms: "Qatar", id: "Qatar" }], ["AE", { en: "United Arab Emirates", ms: "Emiriah Arab Bersatu", id: "Uni Emirat Arab" }], ["SA", { en: "Saudi Arabia", ms: "Arab Saudi", id: "Arab Saudi" }]] },
   ];
   const USES = [
@@ -296,3 +296,16 @@
   }
   $$("canvas.bits").forEach(bits);
 })();
+
+/* ---------- Back to top: appears after about one screen of scrolling; moves focus to the top for keyboard users ---------- */
+(() => {
+  const btn = document.getElementById("toTop"); if (!btn) return;
+  const sync = () => { btn.hidden = scrollY < innerHeight * 1.1; };
+  addEventListener("scroll", sync, { passive: true }); sync();
+  document.querySelectorAll('a[href="#top"]').forEach(a => a.addEventListener("click", e => {
+    e.preventDefault(); scrollTo({ top: 0, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+    const target = document.querySelector("header a, h1"); if (target) { target.setAttribute("tabindex", target.getAttribute("tabindex") ?? "-1"); target.focus({ preventScroll: true }); }
+    history.replaceState(null, "", location.pathname + location.search);
+  }));
+})();
+
