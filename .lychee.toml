@@ -1,0 +1,43 @@
+# Lychee configuration for the AI Benar Advisory site.
+# Checked by .github/workflows/link-check.yml (lycheeverse/lychee-action)
+# and locally with: lychee --config .lychee.toml './**/*.html' './**/*.md'
+#
+# The exclusions below are for sites that return errors to automated
+# link checkers even though the links work fine in a browser.
+# Each entry is a regular expression matched against the full URL.
+# Only bot-protected domains are excluded here; every other link on
+# the site is checked, including github.com, the ASEAN and EU AI
+# Governance Trackers, artificialintelligenceact.eu and ico.org.uk.
+#
+# Note: mailto: links and data: URIs need no entry — lychee skips
+# them by default. Links inside app.js (the Abacus analytics
+# endpoint) are not checked either, because the workflow only scans
+# HTML and Markdown.
+
+exclude = [
+  # Calendly serves an error page ("Oops, something went wrong") to
+  # automated requests — verified 23 Nov 2026 with a crawler fetch of
+  # https://calendly.com/suhaimizainalshah/20-minute-meeting, which
+  # returned the error page instead of the booking page. Lychee itself
+  # sees HTTP 200 for it, so a status check cannot tell a live booking
+  # page from a broken one. Excluding it avoids false failures (and
+  # false passes). The booking link is on the homepage (index.html,
+  # "Book a free call"); check it by hand if it ever changes.
+  'https://calendly\.com/.*',
+
+  # LinkedIn returns HTTP 999 to automated requests (verified with
+  # lychee 0.24.2, 23 Nov 2026). Not currently linked from the site;
+  # excluded pre-emptively so a future LinkedIn link does not break
+  # the build.
+  'https://([a-z]+\.)?linkedin\.com/.*',
+
+  # ohchr.org (UN Human Rights) returns HTTP 403 to bots (verified
+  # with lychee 0.24.2, 23 Nov 2026). Not currently linked from the
+  # site; excluded pre-emptively.
+  'https://([a-z]+\.)?ohchr\.org/.*',
+
+  # economie.gouv.fr (French Ministry for the Economy) returns
+  # HTTP 403 to bots (verified with lychee 0.24.2, 23 Nov 2026).
+  # Not currently linked from the site; excluded pre-emptively.
+  'https://([a-z]+\.)?economie\.gouv\.fr/.*',
+]
