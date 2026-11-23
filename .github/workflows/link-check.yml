@@ -1,0 +1,35 @@
+# Link checking for the AI Benar Advisory site.
+# Checks every link in the site's HTML and Markdown on each pull
+# request (a broken link fails the PR) and once a week, so links
+# that rot after merging are still caught.
+# Exclusions for bot-protected sites live in .lychee.toml, with the
+# reason for each one documented there.
+
+name: Link check
+
+on:
+  pull_request:
+  schedule:
+    # Weekly sweep: Mondays at 09:00 UTC.
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  lychee:
+    name: Check links
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the site
+        uses: actions/checkout@v4
+
+      - name: Check links with Lychee
+        uses: lycheeverse/lychee-action@v2
+        with:
+          # Fail the run if any checked link is broken.
+          fail: true
+          # .lychee.toml holds the exclusion list. The file arguments
+          # cover the whole site: every HTML page plus the README.
+          args: --verbose --no-progress --config .lychee.toml './**/*.html' './**/*.md'
