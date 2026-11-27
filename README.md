@@ -66,3 +66,13 @@ Both pages have a header that stays at the top while scrolling (on AI Hakikat it
 
 ## Privacy
 No cookies. Anonymous visit counts only, and none when the browser sends Do Not Track or Global Privacy Control. Nothing chosen in the quiz leaves the browser, except what a visitor chooses to send by email.
+
+
+## Addresses and the site map (December 2026)
+The site lives at **https://aibenar.dev/AI-Benar-Advisory/**; old `suhaimizainalshah.github.io` links redirect there. Links to the other sites use short
+addresses (`/ASEAN-AI-Governance-Tracker/`), which work anywhere under aibenar.dev.
+
+**`robots.txt` has moved** to the home repository (`suhaimizainalshah.github.io`), because search engines only read it at the root of the domain;
+the copy here was ignored. The site map for search engines (`aibenar.dev/sitemap.xml`) and for people (`aibenar.dev/sitemap/`) list this site's
+pages; add any new page to the `PAGES` list in the home repository's `build.py`. The blog is on the home site, at `aibenar.dev/blog/`, linked from
+this site's menu and footer.
