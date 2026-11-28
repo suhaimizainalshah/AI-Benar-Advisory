@@ -32,4 +32,6 @@ jobs:
           fail: true
           # .lychee.toml holds the exclusion list. The file arguments
           # cover the whole site: every HTML page plus the README.
-          args: --verbose --no-progress --config .lychee.toml './**/*.html' './**/*.md'
+          args: --base-url https://aibenar.dev/ --verbose --no-progress --config .lychee.toml './**/*.html' './**/*.md'
+  
+  
